@@ -1,6 +1,8 @@
 # flutter_speedcode
 
-web访问:http://ijitang.net/
+
+web端访问:http://ijitang.net/ 中的Travel Blog Sliver的使用
+
 
 >* TravelBlog Sliver的使用
 
