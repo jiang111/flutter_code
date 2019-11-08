@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speedcode/sliver1/home_page.dart' as SliverHomePage;
+import 'package:flutter_speedcode/login_page/home_page.dart' as LoginPage;
 
 class HomePage extends StatelessWidget {
   @override
@@ -27,8 +28,21 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          Divider(
-            color: Colors.black,
+          ListTile(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return LoginPage.HomePage();
+                },
+              ));
+            },
+            title: Text(
+              "登录页面",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
           ),
         ],
       ),
