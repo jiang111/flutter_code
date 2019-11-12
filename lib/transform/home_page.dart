@@ -107,6 +107,8 @@ class _PageViewTransformState extends State<PageViewTransform> {
                   rotateY = 1 - rotateY;
                 }
                 rotateY = rotateY.abs().clamp(0.0, 1.0);
+              } else {
+                rotateY = 0;
               }
             });
           });
