@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Flutter SpeedCode"),
+        title: Text("Flutter SpeedCode (web端效果不理想,建议自己编译原生应用)"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
