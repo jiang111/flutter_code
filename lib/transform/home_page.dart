@@ -58,12 +58,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 50,
-              ),
-              child: PageViewTransform(),
-            ),
+            child: PageViewTransform(),
           )
         ],
       ),
@@ -129,7 +124,7 @@ class _PageViewTransformState extends State<PageViewTransform> {
           padding: EdgeInsets.only(
             right: 15,
             bottom: 30,
-            top: 50 - scale * 25,
+            top: 100 - scale * 25,
           ),
           child: Transform(
             transform: Matrix4.identity()
