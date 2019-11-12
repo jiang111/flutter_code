@@ -1,50 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speedcode/sliver1/home_page.dart' as SliverHomePage;
 import 'package:flutter_speedcode/login_page/home_page.dart' as LoginPage;
+import 'package:flutter_speedcode/transform/home_page.dart' as Transform;
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<String> _list = [
+      "assets/images/show1.jpg",
+      "assets/images/show2.png",
+      "assets/images/show3.png"
+    ];
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text("Flutter SpeedCode"),
       ),
-      body: Column(
-        children: <Widget>[
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return SliverHomePage.HomePage();
-                },
-              ));
-            },
-            title: Text(
-              "TravelBlog Sliver的使用",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-              ),
-            ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+        ),
+        child: PageView.builder(
+          controller: PageController(
+            viewportFraction: 0.8,
           ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return LoginPage.HomePage();
-                },
-              ));
-            },
-            title: Text(
-              "登录页面",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: (){
+
+                if(index == 0){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return SliverHomePage.HomePage();
+                    },
+                  ));
+                }else if(index == 1){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return LoginPage.HomePage();
+                    },
+                  ));
+                }else if(index == 2){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return Transform.HomePage();
+                    },
+                  ));
+                }
+
+
+
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                  right: 20,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    20,
+                  ),
+                  child: Image.asset(
+                    _list[index],
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
+            );
+          },
+          itemCount: _list.length,
+        ),
       ),
     );
   }
