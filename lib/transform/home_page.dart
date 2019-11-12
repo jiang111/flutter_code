@@ -11,11 +11,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {},
-        selectedFontSize: 0,
+        backgroundColor: Colors.white,
         unselectedFontSize: 0,
-        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 0,
         items: [
           BottomNavigationBarItem(
             icon: Icon(
@@ -26,39 +26,41 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.bookmark_border,
-              color: Colors.black26,
+              Icons.bookmark,
+              color: Colors.black54,
             ),
             title: Text(""),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.supervised_user_circle,
-              color: Colors.black26,
+              color: Colors.black54,
             ),
             title: Text(""),
           ),
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + kToolbarHeight,
-              left: 30,
+              left: 40,
             ),
             child: Text(
-              "Vacation Day",
+              "Find your \nnext vacation.",
               style: TextStyle(
+                letterSpacing: 1.3,
                 color: Colors.black,
-                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                height: 1.3,
               ),
             ),
           ),
           Expanded(
-            child: PageViewTransform(),
+            child: PageViewWidget(),
           )
         ],
       ),
@@ -66,28 +68,19 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class PageViewTransform extends StatefulWidget {
+class PageViewWidget extends StatefulWidget {
   @override
-  _PageViewTransformState createState() => _PageViewTransformState();
+  _PageViewWidgetState createState() => _PageViewWidgetState();
 }
 
-class _PageViewTransformState extends State<PageViewTransform> {
-  List<String> _list = [
-    "assets/images/1.jpg",
-    "assets/images/2.jpg",
-    "assets/images/3.jpg",
-    "assets/images/4.jpg",
-    "assets/images/5.jpg"
-  ];
+class _PageViewWidgetState extends State<PageViewWidget> {
+  List<VacationBean> _list = VacationBean.generate();
 
   PageController pageController;
 
   double viewportFraction = 0.8;
-  double scaleFraction = 0.8;
-  double full_scale = 1.0;
-  double page_offset = 0;
-  double scale = 0;
-  double rotateY = 0;
+
+  double pageOffset = 0;
 
   @override
   void initState() {
@@ -96,20 +89,7 @@ class _PageViewTransformState extends State<PageViewTransform> {
         PageController(initialPage: 0, viewportFraction: viewportFraction)
           ..addListener(() {
             setState(() {
-              page_offset = pageController.page;
-              if (pageController.position.haveDimensions) {
-                rotateY = double.parse(("0." +
-                    page_offset.toString().substring(
-                          page_offset.toString().indexOf(".") + 1,
-                        )));
-
-                if (rotateY > 0.5) {
-                  rotateY = 1 - rotateY;
-                }
-                rotateY = rotateY.abs().clamp(0.0, 1.0);
-              } else {
-                rotateY = 0;
-              }
+              pageOffset = pageController.page;
             });
           });
   }
@@ -119,51 +99,60 @@ class _PageViewTransformState extends State<PageViewTransform> {
     return PageView.builder(
       controller: pageController,
       itemBuilder: (context, index) {
-        scale = max(scaleFraction,
-            (full_scale - (page_offset - index).abs()) + viewportFraction);
+        double scale = max(viewportFraction,
+            (1 - (pageOffset - index).abs()) + viewportFraction);
+
+        double angle = (pageOffset - index).abs();
+
+        if (angle > 0.5) {
+          angle = 1 - angle;
+        }
 
         return Container(
           padding: EdgeInsets.only(
-            right: 15,
-            bottom: 30,
+            right: 10,
+            left: 20,
             top: 100 - scale * 25,
+            bottom: 50,
           ),
           child: Transform(
             transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.001)
-              ..rotateY(rotateY),
+              ..setEntry(
+                3,
+                2,
+                0.001,
+              )
+              ..rotateY(angle),
             alignment: Alignment.center,
             child: Material(
-              elevation: 5,
-              borderRadius: BorderRadius.circular(10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Stack(
-                  children: <Widget>[
-                    Image.asset(
-                      _list[index],
-                      width: MediaQuery.of(context).size.width,
-                      fit: BoxFit.none,
-                      alignment:
-                          Alignment((page_offset - index).abs() * 0.5, 0),
-                    ),
-                    Positioned(
-                      bottom: 30,
-                      left: 30,
-                      child: AnimatedOpacity(
-                        opacity: rotateY == 0 ? 1 : 0,
-                        duration: Duration(milliseconds: 100),
-                        child: Text(
-                          "London",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
+              elevation: 2,
+              child: Stack(
+                children: <Widget>[
+                  Image.asset(
+                    _list[index].url,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                  ),
+                  Positioned(
+                    bottom: 60,
+                    left: 20,
+                    child: AnimatedOpacity(
+                      opacity: angle == 0 ? 1 : 0,
+                      duration: Duration(
+                        milliseconds: 200,
+                      ),
+                      child: Text(
+                        _list[index].name,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
                         ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
@@ -171,5 +160,23 @@ class _PageViewTransformState extends State<PageViewTransform> {
       },
       itemCount: _list.length,
     );
+  }
+}
+
+
+class VacationBean {
+  String url;
+  String name;
+
+  VacationBean(this.url, this.name);
+
+  static List<VacationBean> generate() {
+    return [
+      VacationBean("assets/images/1.jpg", "Japan"),
+      VacationBean("assets/images/2.jpg", "Franch"),
+      VacationBean("assets/images/3.jpg", "Paris"),
+      VacationBean("assets/images/4.jpg", "London"),
+      VacationBean("assets/images/5.jpg", "China"),
+    ];
   }
 }
