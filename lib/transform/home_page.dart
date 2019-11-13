@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
@@ -131,7 +132,8 @@ class _PageViewWidgetState extends State<PageViewWidget> {
                   Image.asset(
                     _list[index].url,
                     width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.none,
+                    alignment: Alignment((pageOffset - index).abs() * 0.5, 0),
                   ),
                   Positioned(
                     bottom: 60,
@@ -162,7 +164,6 @@ class _PageViewWidgetState extends State<PageViewWidget> {
     );
   }
 }
-
 
 class VacationBean {
   String url;
