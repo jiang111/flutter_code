@@ -125,37 +125,34 @@ class _PageViewWidgetState extends State<PageViewWidget> {
               )
               ..rotateY(angle),
             alignment: Alignment.center,
-            child: Material(
-              elevation: 2,
-              child: Stack(
-                children: <Widget>[
-                  Image.asset(
-                    _list[index].url,
-                    width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.none,
-                    alignment: Alignment((pageOffset - index).abs() * 0.5, 0),
-                  ),
-                  Positioned(
-                    bottom: 60,
-                    left: 20,
-                    child: AnimatedOpacity(
-                      opacity: angle == 0 ? 1 : 0,
-                      duration: Duration(
-                        milliseconds: 200,
-                      ),
-                      child: Text(
-                        _list[index].name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
+            child: Stack(
+              children: <Widget>[
+                Image.asset(
+                  _list[index].url,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.none,
+                  alignment: Alignment((pageOffset - index).abs() * 0.5, 0),
+                ),
+                Positioned(
+                  bottom: 60,
+                  left: 20,
+                  child: AnimatedOpacity(
+                    opacity: angle == 0 ? 1 : 0,
+                    duration: Duration(
+                      milliseconds: 200,
+                    ),
+                    child: Text(
+                      _list[index].name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         );
