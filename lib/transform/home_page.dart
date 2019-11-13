@@ -108,7 +108,6 @@ class _PageViewWidgetState extends State<PageViewWidget> {
         if (angle > 0.5) {
           angle = 1 - angle;
         }
-
         return Container(
           padding: EdgeInsets.only(
             right: 10,
