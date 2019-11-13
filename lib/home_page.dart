@@ -21,54 +21,67 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
           vertical: 20,
         ),
-        child: PageView.builder(
-          controller: PageController(
-            viewportFraction: 0.8,
-          ),
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: (){
-
-                if(index == 0){
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return SliverHomePage.HomePage();
-                    },
-                  ));
-                }else if(index == 1){
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return LoginPage.HomePage();
-                    },
-                  ));
-                }else if(index == 2){
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return Transform.HomePage();
-                    },
-                  ));
-                }
-
-
-
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SliverHomePage.HomePage()));
               },
-              child: Container(
-                padding: EdgeInsets.only(
-                  right: 20,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
-                  child: Image.asset(
-                    _list[index],
-                    fit: BoxFit.cover,
+                child: Text(
+                  "Sliver的使用",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
                   ),
                 ),
               ),
-            );
-          },
-          itemCount: _list.length,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => LoginPage.HomePage()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                child: Text(
+                  "Login Page",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Transform.HomePage()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                child: Text(
+                  "PageView Transform的使用",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
