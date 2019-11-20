@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
       "assets/images/show2.png",
       "assets/images/show3.png"
     ];
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
