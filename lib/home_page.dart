@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speedcode/sliver1/home_page.dart' as SliverHomePage;
 import 'package:flutter_speedcode/login_page/home_page.dart' as LoginPage;
 import 'package:flutter_speedcode/transform/home_page.dart' as Transform;
+import 'package:flutter_speedcode/nav/home_page.dart' as Nav;
 
 class HomePage extends StatelessWidget {
   @override
@@ -74,6 +75,25 @@ class HomePage extends StatelessWidget {
                 ),
                 child: Text(
                   "PageView Transform的使用",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Nav.HomePage()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                child: Text(
+                  "自定义tabbar",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
