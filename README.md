@@ -1,6 +1,9 @@
 # flutter_speedcode
 
 
+[apk下载](https://github.com/jiang111/flutter_code/raw/master/art/app-release.apk)
+
+
 web端访问:http://ijitang.net/ 
 
 
