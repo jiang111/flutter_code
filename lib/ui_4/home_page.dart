@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_scrollview/top_widget.dart';
 
 import 'bottom_widget.dart';
 import 'center_widget.dart';
+import 'top_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,6 +51,10 @@ class _HomePageState extends State<HomePage> {
       if (max_offset <= 0) {
         max_offset = 0;
       }
+
+      setState(() {
+
+      });
     });
   }
 
