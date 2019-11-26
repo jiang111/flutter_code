@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speedcode/sliver1/home_page.dart' as SliverHomePage;
-import 'package:flutter_speedcode/login_page/home_page.dart' as LoginPage;
-import 'package:flutter_speedcode/transform/home_page.dart' as Transform;
-import 'package:flutter_speedcode/nav/home_page.dart' as Nav;
+import 'package:flutter_speedcode/ui_2/home_page.dart' as ui_2;
+import 'package:flutter_speedcode/ui_3/home_page.dart' as ui_3;
+import 'package:flutter_speedcode/ui_1/home_page.dart' as ui_1;
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,8 +25,8 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SliverHomePage.HomePage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ui_1.HomePage()));
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -35,45 +34,7 @@ class HomePage extends StatelessWidget {
                   vertical: 20,
                 ),
                 child: Text(
-                  "Sliver的使用",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => LoginPage.HomePage()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 20,
-                ),
-                child: Text(
-                  "Login Page",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Transform.HomePage()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 20,
-                ),
-                child: Text(
-                  "PageView Transform的使用",
+                  "Flutter精美UI系列视频教程-1",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -84,7 +45,7 @@ class HomePage extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Nav.HomePage()));
+                    MaterialPageRoute(builder: (context) => ui_2.HomePage()));
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -92,7 +53,26 @@ class HomePage extends StatelessWidget {
                   vertical: 20,
                 ),
                 child: Text(
-                  "自定义tabbar",
+                  "Flutter精美UI系列视频教程-2",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ui_3.HomePage()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                child: Text(
+                  "Flutter精美UI系列视频教程-3",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
