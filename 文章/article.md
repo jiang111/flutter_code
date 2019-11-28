@@ -47,9 +47,11 @@
 
 [Flutter 面试知识点集锦](https://juejin.im/post/5cd9875ae51d453d022cb662)
 
+[深入理解Flutter多线程](https://juejin.im/post/5cc311695188252e83434aba)
 
+[深入理解Flutter引擎线程模式](https://juejin.im/entry/5b20b5826fb9a01e5868d45f)
 
-
+[Flutter之事件处理](https://juejin.im/post/5d3c63166fb9a07eac061c9b)
 
 
 
