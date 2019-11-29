@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Positioned(
               left: left,
               top: left * 0.2,
-              bottom: left * 0.2,
+              bottom: left * 0.2 / 2,
               child: FrontWidget(open),
             ),
           ],
