@@ -1,8 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 class FrontWidget extends StatefulWidget {
-
-
   Function open;
 
   FrontWidget(this.open);
@@ -11,7 +10,8 @@ class FrontWidget extends StatefulWidget {
   _FrontWidgetState createState() => _FrontWidgetState();
 }
 
-class _FrontWidgetState extends State<FrontWidget> with TickerProviderStateMixin {
+class _FrontWidgetState extends State<FrontWidget>
+    with TickerProviderStateMixin {
   TabController _tabController;
 
   @override
@@ -25,7 +25,9 @@ class _FrontWidgetState extends State<FrontWidget> with TickerProviderStateMixin
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: Platform.isAndroid
+            ? BorderRadius.circular(0)
+            : BorderRadius.circular(40),
       ),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
