@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
         brightness: Brightness.dark,
         centerTitle: false,
         title: Text(
-          "Flutter精美UI系列视频(公众号:Flutter技术分享)",
+          "Flutter精美UI系列视频",
           style: TextStyle(
             color: Colors.black,
           ),
@@ -262,6 +262,9 @@ class HomePage extends StatelessWidget {
 
     if (width < 100) {
       width = 100;
+    }
+    if (MediaQuery.of(context).size.width < 500) {
+      width = MediaQuery.of(context).size.width / 3;
     }
 
     return GestureDetector(
