@@ -26,11 +26,6 @@ class _FrontWidgetState extends State<FrontWidget>
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: kIsWeb
-            ? BorderRadius.circular(0)
-            : (Platform.isIOS
-                ? BorderRadius.circular(40)
-                : BorderRadius.circular(0)),
       ),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
