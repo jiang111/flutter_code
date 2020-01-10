@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speedcode/async_demo/home_page.dart';
 import 'package:flutter_speedcode/ui_2/home_page.dart' as ui_2;
 import 'package:flutter_speedcode/ui_3/home_page.dart' as ui_3;
 import 'package:flutter_speedcode/ui_1/home_page.dart' as ui_1;
@@ -204,6 +205,25 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AsyncHomePage()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 20,
+                        ),
+                        child: Text(
+                          "Flutter 异步Widgets的使用",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
         ),
@@ -236,6 +256,11 @@ class HomePage extends StatelessWidget {
       "Flutter精美UI系列视频-5",
       "assets/images/main_5.png",
       MaterialPageRoute(builder: (context) => ui_5.HomePage()),
+    ),
+    MainBean(
+      "Flutter 异步Widgets的使用",
+      "assets/images/main_6.png",
+      MaterialPageRoute(builder: (context) => AsyncHomePage()),
     ),
   ];
 
