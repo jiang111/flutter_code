@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter_speedcode/async_demo/streambuilder2/GlobalState.dart';
+import 'package:flutter_speedcode/async_demo/streambuilder2/NetState.dart';
 
 
 class StateManager {
-  StreamController<GlobalState> streamController;
+  StreamController<NetState> streamController;
 
   StateManager() {
     streamController = StreamController();
@@ -18,17 +18,17 @@ class StateManager {
 
 
   void loadingDialog() {
-    streamController.sink.add(GlobalShowDialogState());
+    streamController.sink.add(NetShowDialogState());
   }
   void loading() {
-    streamController.sink.add(GlobalLoadingState());
+    streamController.sink.add(NetLoadingState());
   }
 
   void error() {
-    streamController.sink.add(GlobalErrorState());
+    streamController.sink.add(NetErrorState());
   }
 
   void content<T>(T t) {
-    streamController.sink.add(GlobalContentState<T>(t));
+    streamController.sink.add(NetContentState<T>(t));
   }
 }

@@ -68,6 +68,12 @@ class _Test3PageState extends State<Test3Page> {
               }
             }
 
+            if (result == null) {
+              result = Container(
+                width: 0,
+                height: 0,
+              );
+            }
             return result;
           },
         ),

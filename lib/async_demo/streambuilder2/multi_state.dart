@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_speedcode/async_demo/streambuilder2/GlobalState.dart';
+import 'package:flutter_speedcode/async_demo/streambuilder2/NetState.dart';
 import 'package:flutter_speedcode/async_demo/widget/error.dart';
 import 'package:flutter_speedcode/async_demo/widget/loading.dart';
 import 'package:flutter_speedcode/async_demo/widget/loading_dialog.dart';
@@ -9,13 +9,14 @@ import 'package:flutter_speedcode/async_demo/widget/loading_dialog.dart';
 typedef GlobalContentBuilder<T> = Widget Function(
     BuildContext buildContext, T t);
 
+
 class MultiStateWidget<T> extends StatefulWidget {
   Widget loading = LoadingWidget();
   Widget error = Error1Widget();
 
   GlobalContentBuilder contentBuilder;
 
-  StreamController<GlobalState> streamController;
+  StreamController<NetState> streamController;
 
   MultiStateWidget(
       {this.streamController, this.contentBuilder, this.loading, this.error});
@@ -32,17 +33,17 @@ class _MultiStateWidgetState<T> extends State<MultiStateWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: StreamBuilder<GlobalState>(
+      child: StreamBuilder<NetState>(
         stream: widget.streamController.stream,
         builder: (context, snap) {
           Widget result;
           if (snap.data != null) {
-            if (snap.data is GlobalLoadingState) {
+            if (snap.data is NetLoadingState) {
               result = LoadingWidget();
-            } else if (snap.data is GlobalErrorState) {
+            } else if (snap.data is NetErrorState) {
               hideDialog();
               result = Error1Widget();
-            } else if (snap.data is GlobalShowDialogState) {
+            } else if (snap.data is NetShowDialogState) {
               Future.microtask(() {
                 hideDialogCallBack = LoadingDialog.showDialog(context);
               });
@@ -50,15 +51,15 @@ class _MultiStateWidgetState<T> extends State<MultiStateWidget> {
               if (lastWidget != null) {
                 result = lastWidget;
               }
-            } else if (snap.data is GlobalHideDialogState) {
+            } else if (snap.data is NetHideDialogState) {
               hideDialog();
               if (lastWidget != null) {
                 result = lastWidget;
               }
-            } else if (snap.data is GlobalContentState) {
+            } else if (snap.data is NetContentState) {
               hideDialog();
               result = widget.contentBuilder(
-                  context, (snap.data as GlobalContentState).t);
+                  context, (snap.data as NetContentState).t);
             }
           }
 
