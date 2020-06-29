@@ -9,7 +9,7 @@
 [apk下载](https://github.com/jiang111/flutter_code/raw/master/art/app-release.apk)
 
 
-web端访问:http://ijitang.net/ 
+web端访问:http://ijitang.net/  域名失效的话访问 http://118.24.92.169/
 
 ![](https://github.com/jiang111/flutter_code/raw/master/art/1.png)
 
