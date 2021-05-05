@@ -1,21 +1,22 @@
 //"http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10"
 class film_list {
-  int count;
-  int start;
-  int total;
-  List<Subjects> subjects;
-  String title;
+  int? count;
+  int? start;
+  int? total;
+  List<Subjects>? subjects;
+  String? title;
 
-  film_list({this.count, this.start, this.total, this.subjects, this.title});
+  film_list(
+      {required this.count, this.start, this.total, this.subjects, this.title});
 
   film_list.fromJson(Map<String, dynamic> json) {
     count = json['count'];
     start = json['start'];
     total = json['total'];
     if (json['subjects'] != null) {
-      subjects = new List<Subjects>();
+      subjects = List.empty();
       json['subjects'].forEach((v) {
-        subjects.add(new Subjects.fromJson(v));
+        subjects!.add(new Subjects.fromJson(v));
       });
     }
     title = json['title'];
@@ -27,7 +28,7 @@ class film_list {
     data['start'] = this.start;
     data['total'] = this.total;
     if (this.subjects != null) {
-      data['subjects'] = this.subjects.map((v) => v.toJson()).toList();
+      data['subjects'] = this.subjects!.map((v) => v.toJson()).toList();
     }
     data['title'] = this.title;
     return data;
@@ -35,9 +36,9 @@ class film_list {
 }
 
 class Subjects {
-  Rating rating;
-  String title;
-  Images images;
+  Rating? rating;
+  String? title;
+  Images? images;
 
   Subjects({this.rating, this.title, this.images});
 
@@ -52,21 +53,21 @@ class Subjects {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.rating != null) {
-      data['rating'] = this.rating.toJson();
+      data['rating'] = this.rating!.toJson();
     }
     data['title'] = this.title;
     if (this.images != null) {
-      data['images'] = this.images.toJson();
+      data['images'] = this.images!.toJson();
     }
     return data;
   }
 }
 
 class Rating {
-  int max;
-  String average;
-  String stars;
-  int min;
+  int? max;
+  String? average;
+  String? stars;
+  int? min;
 
   Rating({this.max, this.average, this.stars, this.min});
 
@@ -92,9 +93,9 @@ class Rating {
 }
 
 class Images {
-  String small;
-  String large;
-  String medium;
+  String? small;
+  String? large;
+  String? medium;
 
   Images({this.small, this.large, this.medium});
 

@@ -48,15 +48,15 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
   Offset lastCheckOffset = Offset(0, 0);
 
   Offset animationOffset = Offset(0, 0);
-  Animation _animation;
-  AnimationController _animationController;
+  late Animation _animation;
+  AnimationController? _animationController;
 
   @override
   void initState() {
     checkIndex = _list.length - 1;
     super.initState();
 
-    SchedulerBinding.instance.endOfFrame.then((value) {
+    SchedulerBinding.instance!.endOfFrame.then((value) {
       calcuteCheckOffset();
       addAnimation();
     });
@@ -64,7 +64,7 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
 
   void calcuteCheckOffset() {
     lastCheckOffset = checkedPositionOffset;
-    RenderBox renderBox = _keys[checkIndex].currentContext.findRenderObject();
+    RenderBox renderBox = _keys[checkIndex].currentContext!.findRenderObject() as RenderBox;
     Offset widgetOffset = renderBox.localToGlobal(Offset(0, 0));
     Size widgetSise = renderBox.size;
     checkedPositionOffset = Offset(widgetOffset.dx + widgetSise.width,
@@ -99,9 +99,9 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
   }
 
   List<Widget> _buildList() {
-    List<Widget> _widget_list = [];
+    List<Widget> WidgetList = [];
 
-    _widget_list.add(Padding(
+    WidgetList.add(Padding(
       padding: EdgeInsets.only(
         top: 50,
       ),
@@ -111,7 +111,7 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
         size: 30,
       ),
     ));
-    _widget_list.add(Padding(
+    WidgetList.add(Padding(
       padding: EdgeInsets.only(
         top: 50,
       ),
@@ -122,7 +122,7 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
       ),
     ));
     for (int i = 0; i < _list.length; i++) {
-      _widget_list.add(Expanded(
+      WidgetList.add(Expanded(
         child: GestureDetector(
             onTap: () {
               indexChecked(i);
@@ -132,10 +132,10 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
                 _keys[i],
                 checkIndex == i &&
                     (_animationController != null &&
-                        _animationController.isCompleted))),
+                        _animationController!.isCompleted))),
       ));
     }
-    _widget_list.add(Padding(
+    WidgetList.add(Padding(
       padding: EdgeInsets.only(
         top: 50,
         bottom: 50,
@@ -146,7 +146,7 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
         size: 30,
       ),
     ));
-    return _widget_list;
+    return WidgetList;
   }
 
   void indexChecked(int i) {
@@ -171,8 +171,8 @@ class _LeftWidgetState extends State<LeftWidget> with TickerProviderStateMixin {
 
     _animation = Tween(begin: lastCheckOffset.dy, end: checkedPositionOffset.dy)
         .animate(CurvedAnimation(
-            parent: _animationController, curve: Curves.easeInOutBack));
-    _animationController.forward();
+            parent: _animationController!, curve: Curves.easeInOutBack));
+    _animationController!.forward();
   }
 }
 
@@ -243,7 +243,7 @@ class RightWidget extends StatefulWidget {
 
 class _RightWidgetState extends State<RightWidget>
     with TickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {

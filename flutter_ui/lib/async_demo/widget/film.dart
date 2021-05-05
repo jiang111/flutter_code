@@ -4,7 +4,7 @@ import 'package:flutter_speedcode/async_demo/bean/film_list.dart';
 import 'film_cell.dart';
 
 class Film extends StatefulWidget {
-  film_list film;
+  film_list? film;
 
   Film(this.film);
 
@@ -19,7 +19,7 @@ class _FilmState extends State<Film> {
       child: Container(
         child: Wrap(
           children: <Widget>[
-            ...widget.film.subjects.map((f) => FilmCell(f)).toList()
+            ...widget.film!.subjects!.map((f) => FilmCell(f)).toList()
           ],
         ),
       ),

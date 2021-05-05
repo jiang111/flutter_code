@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   double yOffset = 0;
   double max_offset = 1;
 
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   @override
   void initState() {
@@ -33,11 +33,11 @@ class _HomePageState extends State<HomePage> {
     _scrollController = ScrollController()
       ..addListener(() {
         setState(() {
-          yOffset = _scrollController.offset;
+          yOffset = _scrollController!.offset;
         });
       });
 
-    SchedulerBinding.instance.endOfFrame.then((v) {
+    SchedulerBinding.instance!.endOfFrame.then((v) {
       _height1 = _findHeightByKey(_key1);
       _height2 = _findHeightByKey(_key2);
       _height3 = _findHeightByKey(_key3);
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   double _findHeightByKey(GlobalKey<State<StatefulWidget>> key) {
-    RenderBox renderBox = key.currentContext.findRenderObject();
+    RenderBox renderBox = key.currentContext!.findRenderObject() as RenderBox;
 
     return renderBox.size.height;
   }

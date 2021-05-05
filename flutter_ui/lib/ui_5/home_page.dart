@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   double left = 0;
-  double direction;
+  late double direction;
 
   double MAX_LEFT = 0;
 
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     animateWidget();
   }
 
-  Animation _animation;
+  late Animation _animation;
 
   void animateWidget() {
     bool increment = direction <= 0;
@@ -90,9 +90,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         setState(() {});
       });
 
-    double temp_left = left;
+    double tempLeft = left;
     _animation = Tween(
-      begin: temp_left,
+      begin: tempLeft,
       end: increment ? MAX_LEFT : 0.0,
     ).animate(CurvedAnimation(
         curve: Curves.fastLinearToSlowEaseIn, parent: _controller));

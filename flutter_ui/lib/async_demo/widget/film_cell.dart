@@ -17,12 +17,12 @@ class FilmCell extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.network(
-            subjects.images.medium,
+            subjects.images!.medium!,
             width: MediaQuery.of(context).size.width / 3 - 20,
             height: (MediaQuery.of(context).size.width / 3 - 20) * 1.5,
           ),
           Text(
-            subjects.title,
+            subjects.title!,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: Colors.black,

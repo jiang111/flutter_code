@@ -14,11 +14,11 @@ class Test2Page extends StatefulWidget {
 class _Test2PageState extends State<Test2Page> {
   String title = "FutureBuilder()的使用";
 
-  Future future;
+  Future? future;
 
   Future<film_list> _loadData(bool needException) async {
-    var response = await http.get(
-        "http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10");
+    var response = await http.get(Uri.parse(
+        "http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10"));
 
     print(response.body);
     if (needException) {
@@ -37,6 +37,7 @@ class _Test2PageState extends State<Test2Page> {
     super.initState();
     future = _loadData(false);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +53,9 @@ class _Test2PageState extends State<Test2Page> {
       ),
       body: Container(
         child: FutureBuilder<film_list>(
-          future: future,
+          future: future as Future<film_list>?,
           builder: (context, snap) {
-            Widget result;
+            late Widget result;
 
             if (snap.connectionState == ConnectionState.waiting) {
               result = LoadingWidget();

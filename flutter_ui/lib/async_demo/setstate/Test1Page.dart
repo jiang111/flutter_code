@@ -10,9 +10,9 @@ class Test1Page extends StatefulWidget {
 }
 
 class _Test1State extends State<Test1Page> {
-  film_list film;
-  bool loading;
-  bool error;
+  film_list? film;
+  late bool loading;
+  late bool error;
 
   @override
   void initState() {
@@ -36,8 +36,8 @@ class _Test1State extends State<Test1Page> {
 
   Future<film_list> loadData() async {
     reset();
-    var response = await http.get(
-        "http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10");
+    var response = await http.get(Uri.parse(
+        "http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10"));
 
     print(response.body);
 

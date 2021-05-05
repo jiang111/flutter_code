@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_speedcode/async_demo/streambuilder2/NetState.dart';
 
-
 class StateManager {
-  StreamController<NetState> streamController;
+  StreamController<NetState>? streamController;
 
   StateManager() {
     streamController = StreamController();
@@ -12,23 +11,23 @@ class StateManager {
 
   void dispose() {
     if (streamController != null) {
-      streamController.close();
+      streamController?.close();
     }
   }
 
-
   void loadingDialog() {
-    streamController.sink.add(NetShowDialogState());
+    streamController?.sink.add(NetShowDialogState());
   }
+
   void loading() {
-    streamController.sink.add(NetLoadingState());
+    streamController?.sink.add(NetLoadingState());
   }
 
   void error() {
-    streamController.sink.add(NetErrorState());
+    streamController?.sink.add(NetErrorState());
   }
 
   void content<T>(T t) {
-    streamController.sink.add(NetContentState<T>(t));
+    streamController?.sink.add(NetContentState<T>(t));
   }
 }

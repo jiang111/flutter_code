@@ -11,12 +11,12 @@ typedef GlobalContentBuilder<T> = Widget Function(
 
 
 class MultiStateWidget<T> extends StatefulWidget {
-  Widget loading = LoadingWidget();
-  Widget error = Error1Widget();
+  Widget? loading = LoadingWidget();
+  Widget? error = Error1Widget();
 
-  GlobalContentBuilder contentBuilder;
+  GlobalContentBuilder? contentBuilder;
 
-  StreamController<NetState> streamController;
+  StreamController<NetState>? streamController;
 
   MultiStateWidget(
       {this.streamController, this.contentBuilder, this.loading, this.error});
@@ -26,17 +26,17 @@ class MultiStateWidget<T> extends StatefulWidget {
 }
 
 class _MultiStateWidgetState<T> extends State<MultiStateWidget> {
-  HideDialogCallBack hideDialogCallBack;
+  HideDialogCallBack? hideDialogCallBack;
 
-  Widget lastWidget;
+  Widget? lastWidget;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: StreamBuilder<NetState>(
-        stream: widget.streamController.stream,
+        stream: widget.streamController!.stream,
         builder: (context, snap) {
-          Widget result;
+          Widget? result;
           if (snap.data != null) {
             if (snap.data is NetLoadingState) {
               result = LoadingWidget();
@@ -58,7 +58,7 @@ class _MultiStateWidgetState<T> extends State<MultiStateWidget> {
               }
             } else if (snap.data is NetContentState) {
               hideDialog();
-              result = widget.contentBuilder(
+              result = widget.contentBuilder!(
                   context, (snap.data as NetContentState).t);
             }
           }
@@ -75,7 +75,7 @@ class _MultiStateWidgetState<T> extends State<MultiStateWidget> {
 
   void hideDialog() {
     if (hideDialogCallBack != null) {
-      hideDialogCallBack();
+      hideDialogCallBack!();
       hideDialogCallBack = null;
     }
   }

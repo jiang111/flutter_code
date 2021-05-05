@@ -15,11 +15,11 @@ class Test3Page extends StatefulWidget {
 }
 
 class _Test3PageState extends State<Test3Page> {
-  StreamController<NetState> streamController;
+  late StreamController<NetState> streamController;
 
   Future<film_list> _loadData(bool needException) async {
-    var response = await http.get(
-        "http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10");
+    var response = await http.get(Uri.parse(
+        "http://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10"));
 
     print(response.body);
     if (needException) {
@@ -57,7 +57,7 @@ class _Test3PageState extends State<Test3Page> {
         child: StreamBuilder<NetState>(
           stream: streamController.stream,
           builder: (context, snap) {
-            Widget result;
+            Widget? result;
             if (snap.data != null) {
               if (snap.data is LoadingState) {
                 result = LoadingWidget();

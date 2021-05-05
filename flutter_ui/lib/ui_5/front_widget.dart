@@ -13,7 +13,7 @@ class FrontWidget extends StatefulWidget {
 
 class _FrontWidgetState extends State<FrontWidget>
     with TickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _FrontWidgetState extends State<FrontWidget>
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 GestureDetector(
-                  onTap: widget.open,
+                  onTap: widget.open as void Function()?,
                   child: Padding(
                     padding: EdgeInsets.only(
                       left: 15,

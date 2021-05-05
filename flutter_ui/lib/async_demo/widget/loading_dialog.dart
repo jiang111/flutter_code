@@ -9,7 +9,7 @@ class LoadingDialog {
   static HideDialogCallBack showDialog(BuildContext context) {
     Completer completer = Completer();
 
-    var result = OverlayEntry(
+    OverlayEntry? result = OverlayEntry(
       maintainState: true,
       builder: (context) {
         return Material(
@@ -30,12 +30,12 @@ class LoadingDialog {
 
     completer.complete(() {
       if (result != null) {
-        result.remove();
+        result!.remove();
         result = null;
       }
     });
 
-    Overlay.of(context).insert(result);
+    Overlay.of(context)!.insert(result!);
 
     return () async {
       var hide = await completer.future;

@@ -77,11 +77,11 @@ class PageViewWidget extends StatefulWidget {
 class _PageViewWidgetState extends State<PageViewWidget> {
   List<VacationBean> _list = VacationBean.generate();
 
-  PageController pageController;
+  PageController? pageController;
 
   double viewportFraction = 0.8;
 
-  double pageOffset = 0;
+  double? pageOffset = 0;
 
   @override
   void initState() {
@@ -90,7 +90,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
         PageController(initialPage: 0, viewportFraction: viewportFraction)
           ..addListener(() {
             setState(() {
-              pageOffset = pageController.page;
+              pageOffset = pageController!.page;
             });
           });
   }
@@ -101,9 +101,9 @@ class _PageViewWidgetState extends State<PageViewWidget> {
       controller: pageController,
       itemBuilder: (context, index) {
         double scale = max(viewportFraction,
-            (1 - (pageOffset - index).abs()) + viewportFraction);
+            (1 - (pageOffset! - index).abs()) + viewportFraction);
 
-        double angle = (pageOffset - index).abs();
+        double angle = (pageOffset! - index).abs();
 
         if (angle > 0.5) {
           angle = 1 - angle;
@@ -130,7 +130,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
                   _list[index].url,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.none,
-                  alignment: Alignment((pageOffset - index).abs() * 0.5, 0),
+                  alignment: Alignment((pageOffset! - index).abs() * 0.5, 0),
                 ),
                 Positioned(
                   bottom: 60,

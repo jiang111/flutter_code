@@ -20,7 +20,7 @@ class _BgWidgetState extends State<BgWidget> {
       child: ListView(
         children: <Widget>[
           GestureDetector(
-            onTap: widget.close,
+            onTap: widget.close as void Function()?,
             child: Padding(
               padding: const EdgeInsets.only(
                 top: kToolbarHeight,
